@@ -1,15 +1,14 @@
 
 FROM alpine:3.8
 
-RUN apk add --no-cache mysql apache2 apache2-utils php5-apache2
+RUN apk add --no-cache mysql apache2 apache2-utils php5-apache2 php5-xml
 
-RUN mkdir /opt &&\
-    cd /opt  &&\
-    wget https://github.com/pkp/ocs/archive/refs/tags/ocs-2_3_6-0.zip &&\ 
-    unzip ocs-2_3_6-0.zip -d ./ &&\
-    rm ocs-2_3_6-0.zip &&\
-    mkdir -p /var/www/localhost/htdocs/ &&\
-    mv ocs-ocs-2_3_6-0 /var/www/localhost/htdocs/ocs &&\
+RUN mkdir -p /var/www/localhost/htdocs/ &&\
+    cd /var/www/localhost/htdocs/  &&\
+    wget --no-check-certificate https://pkp.sfu.ca/ocs/download/ocs-2.3.6.tar.gz &&\ 
+    tar -xvf ocs-2.3.6.tar.gz &&\
+    rm ocs-2.3.6.tar.gz &&\
+    mv ocs-2.3.6 ocs &&\
     mkdir -p /run/apache2 &&\
     echo '#!/bin/sh'     > /boot.sh  &&\
     echo 'exec 2>&1'     >> /boot.sh  &&\
