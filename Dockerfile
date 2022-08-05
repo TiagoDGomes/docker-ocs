@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-RUN apk add --no-cache mysql apache2 apache2-utils php5-apache2 php5-xml php5-mysql
+RUN apk add --no-cache mysql apache2 apache2-utils php5-apache2 php5-xml php5-mysql php5-ctype php5-ldap
 
 RUN mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
