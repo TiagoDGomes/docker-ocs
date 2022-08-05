@@ -17,7 +17,7 @@ RUN mkdir -p /run/apache2 &&\
     echo 'rm /run/apache2/httpd.pid' >> /boot.sh  &&\
     echo 'rm /run/mysqld/mysqld.sock' >> /boot.sh  &&\
     echo '/usr/sbin/httpd -DFOREGROUND &' >> /boot.sh  &&\
-    echo '/usr/bin/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib/mariadb/plugin --user=mysql --log-error=/dev/stderr --pid-file=mysql.pid --socket=/run/mysqld/mysqld.sock --port=3306' >> /boot.sh  &&\
+    echo '/usr/bin/mysqld_safe --log-error=/dev/stderr' >> /boot.sh  &&\
     echo 'sleep 10' >> /boot.sh  &&\
     mkdir -p /var/www/localhost/htdocs/ocs/files &&\
     chmod ugo+w /var/www/localhost/htdocs/ocs/config.inc.php  &&\    
