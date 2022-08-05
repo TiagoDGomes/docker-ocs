@@ -15,8 +15,8 @@ RUN mkdir -p /run/apache2 &&\
     echo '#!/bin/sh'     > /boot.sh  &&\
     echo 'exec 2>&1'     >> /boot.sh  &&\
     echo 'rm /run/apache2/httpd.pid' >> /boot.sh  &&\
-    echo '/usr/sbin/httpd -DFOREGROUND & mysqld_safe &' >> /boot.sh  &&\
-    echo 'sleep 360' >> /boot.sh  &&\
+    echo '/usr/sbin/httpd -DFOREGROUND & mysqld_safe' >> /boot.sh  &&\
+    echo 'sleep 10' >> /boot.sh  &&\
     mkdir -p /var/www/localhost/htdocs/ocs/files &&\
     chmod ugo+w /var/www/localhost/htdocs/ocs/config.inc.php  &&\    
     chmod -R ugo+w /var/www/localhost/htdocs/ocs/public &&\
