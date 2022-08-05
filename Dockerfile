@@ -13,7 +13,8 @@ RUN mkdir -p /var/www/localhost/htdocs/ &&\
     echo 'exec 2>&1'     >> /boot.sh  &&\
     echo '/usr/sbin/httpd -DFOREGROUND & mysqld_safe &' >> /boot.sh  &&\
     echo 'sleep 360' >> /boot.sh  &&\
-    chmod -R ugo+w var/www/localhost/htdocs/ocs/cache/ &&\
+    mkdir /var/www/localhost/htdocs/ocs/cache/ &&\
+    chmod -R ugo+w /var/www/localhost/htdocs/ocs/cache/ &&\
     chmod +x /boot.sh 
   
 # Redirect output
