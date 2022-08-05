@@ -9,9 +9,9 @@ RUN mkdir /opt &&\
     unzip ocs-2_3_6-0.zip -d ./ &&\
     rm ocs-2_3_6-0.zip &&\
     mv ocs-ocs-2_3_6-0 ocs &&\
-    mkdir -p /var/www/html &&\
+    mkdir -p /var/www/localhost/htdocs/ &&\
     mkdir -p /run/apache2 &&\
-    ln -s /opt/ocs /var/www/html/ocs &&\
+    ln -s /opt/ocs /var/www/localhost/htdocs/ocs &&\
     echo '#!/bin/sh'     > /boot.sh  &&\
     echo 'exec 2>&1'     >> /boot.sh  &&\
     echo '/usr/sbin/httpd -DFOREGROUND & ' >> /boot.sh  &&\
