@@ -10,6 +10,7 @@ RUN mkdir -p /var/www/localhost/htdocs/ &&\
     mv ocs-2.3.6 ocs
     
 RUN mkdir -p /run/apache2 &&\
+    mkdir -p /data &&\
     echo '#!/bin/sh'     > /boot.sh  &&\
     echo 'exec 2>&1'     >> /boot.sh  &&\
     echo '/usr/sbin/httpd -DFOREGROUND & mysqld_safe &' >> /boot.sh  &&\
