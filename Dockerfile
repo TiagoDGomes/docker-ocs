@@ -10,15 +10,13 @@ RUN mkdir -p /var/www/localhost/htdocs/ &&\
     mv ocs-2.3.6 ocs
     
 RUN mkdir -p /run/apache2 &&\
-    mkdir -p /data/public &&\
     echo '#!/bin/sh'     > /boot.sh  &&\
     echo 'exec 2>&1'     >> /boot.sh  &&\
     echo '/usr/sbin/httpd -DFOREGROUND & mysqld_safe &' >> /boot.sh  &&\
     echo 'sleep 360' >> /boot.sh  &&\
-    rm -rf /var/www/localhost/htdocs/ocs/public &&\
-    ln -s /data/public /var/www/localhost/htdocs/ocs/public &&\
-    ln -s /var/www/localhost/htdocs/ocs/config.inc.php /data/config.inc.php  &&\
-    chmod -R ugo+w /data &&\
+    chmod ugo+w /var/www/localhost/htdocs/ocs/config.inc.php  &&\    
+    chmod -R ugo+w /var/www/localhost/htdocs/ocs/public &&\
+    chmod -R ugo+w /var/www/localhost/htdocs/ocs/files &&\
     chmod -R ugo+w /var/www/localhost/htdocs/ocs/cache &&\
     chmod +x /boot.sh 
   
@@ -31,6 +29,6 @@ RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
 
 EXPOSE 80
 
-VOLUME /data
+VOLUME [ "/var/www/localhost/htdocs/ocs/public", "/var/www/localhost/htdocs/ocs/files", "/var/www/localhost/htdocs/ocs/cache" ]
 
 CMD [ "/boot.sh" ]
