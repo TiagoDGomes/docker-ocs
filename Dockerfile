@@ -14,6 +14,7 @@ RUN mkdir -p /run/apache2 &&\
     echo 'exec 2>&1'     >> /boot.sh  &&\
     echo '/usr/sbin/httpd -DFOREGROUND & mysqld_safe &' >> /boot.sh  &&\
     echo 'sleep 360' >> /boot.sh  &&\
+    mkdir /data &&\
     rm -rf /var/www/localhost/htdocs/ocs/public &&\
     rm -rf /var/www/localhost/htdocs/ocs/cache &&\
     ln -s /var/www/localhost/htdocs/ocs/config.inc.php /data/config.inc.php  &&\
