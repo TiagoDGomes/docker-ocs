@@ -7,15 +7,19 @@ RUN mkdir -p /var/www/localhost/htdocs/ &&\
     wget --no-check-certificate https://pkp.sfu.ca/ocs/download/ocs-2.3.6.tar.gz &&\ 
     tar -xvf ocs-2.3.6.tar.gz &&\
     rm ocs-2.3.6.tar.gz &&\
-    mv ocs-2.3.6 ocs &&\
-    mkdir -p /run/apache2 &&\
+    mv ocs-2.3.6 ocs
+    
+RUN mkdir -p /run/apache2 &&\
     echo '#!/bin/sh'     > /boot.sh  &&\
     echo 'exec 2>&1'     >> /boot.sh  &&\
     echo '/usr/sbin/httpd -DFOREGROUND & mysqld_safe &' >> /boot.sh  &&\
     echo 'sleep 360' >> /boot.sh  &&\
-    chmod -R ugo+w /var/www/localhost/htdocs/ocs/config.inc.php &&\
-    chmod -R ugo+w /var/www/localhost/htdocs/ocs/public/ &&\
-    chmod -R ugo+w /var/www/localhost/htdocs/ocs/cache/ &&\
+    rm -rf /var/www/localhost/htdocs/ocs/public &&\
+    rm -rf /var/www/localhost/htdocs/ocs/cache &&\
+    ln -s /var/www/localhost/htdocs/ocs/config.inc.php /data/config.inc.php  &&\
+    ln -s /data/public /var/www/localhost/htdocs/ocs/public &&\
+    ln -s /data/cache /var/www/localhost/htdocs/ocs/cache &&\
+    chmod -R ugo+w /data &&\
     chmod +x /boot.sh 
   
 # Redirect output
@@ -27,7 +31,6 @@ RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
 
 EXPOSE 80
 
-VOLUME /var/www/localhost/htdocs/ocs/files
-VOLUME /var/www/localhost/htdocs/ocs/public
+VOLUME /data
 
 CMD [ "/boot.sh" ]
