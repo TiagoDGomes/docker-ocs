@@ -30,6 +30,6 @@ RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
 
 EXPOSE 80
 
-VOLUME [ "/var/www/localhost/htdocs/ocs/public", "/var/www/localhost/htdocs/ocs/files", "/var/www/localhost/htdocs/ocs/cache", "var/lib/mysql" ]
+VOLUME [ "/var/www/localhost/htdocs/ocs/public", "/var/www/localhost/htdocs/ocs/files", "/var/www/localhost/htdocs/ocs/cache", "/var/lib/mysql" ]
 
 CMD [ "/boot.sh" ]
