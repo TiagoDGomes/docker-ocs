@@ -2,6 +2,8 @@ FROM alpine:3.8
 
 RUN apk add --no-cache mysql apache2 apache2-utils php5-apache2 php5-xml php5-mysql
 
+RUN mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+
 RUN mkdir -p /var/www/localhost/htdocs/ &&\
     cd /var/www/localhost/htdocs/  &&\
     wget --no-check-certificate https://pkp.sfu.ca/ocs/download/ocs-2.3.6.tar.gz &&\ 
