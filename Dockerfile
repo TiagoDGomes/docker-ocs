@@ -1,4 +1,3 @@
-
 FROM alpine:3.8
 
 RUN apk add --no-cache mysql apache2 apache2-utils php5-apache2 php5-xml
@@ -12,8 +11,9 @@ RUN mkdir -p /var/www/localhost/htdocs/ &&\
     mkdir -p /run/apache2 &&\
     echo '#!/bin/sh'     > /boot.sh  &&\
     echo 'exec 2>&1'     >> /boot.sh  &&\
-    echo '/usr/sbin/httpd -DFOREGROUND & ' >> /boot.sh  &&\
+    echo '/usr/sbin/httpd -DFOREGROUND & mysqld_safe &' >> /boot.sh  &&\
     echo 'sleep 360' >> /boot.sh  &&\
+    chmod -R ugo+w var/www/localhost/htdocs/ocs/cache/ &&\
     chmod +x /boot.sh 
   
 # Redirect output
