@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-RUN apk add --no-cache mysql apache2 apache2-utils php5-apache2 php5-xml
+RUN apk add --no-cache mysql apache2 apache2-utils php5-apache2 php5-xml php5-mysql
 
 RUN mkdir -p /var/www/localhost/htdocs/ &&\
     cd /var/www/localhost/htdocs/  &&\
@@ -10,7 +10,7 @@ RUN mkdir -p /var/www/localhost/htdocs/ &&\
     mv ocs-2.3.6 ocs
     
 RUN mkdir -p /run/apache2 &&\
-    mkdir -p /data &&\
+    mkdir -p /data/public &&\
     echo '#!/bin/sh'     > /boot.sh  &&\
     echo 'exec 2>&1'     >> /boot.sh  &&\
     echo '/usr/sbin/httpd -DFOREGROUND & mysqld_safe &' >> /boot.sh  &&\
