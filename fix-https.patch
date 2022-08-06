@@ -1,6 +1,6 @@
 --- ./PKRequest.inc.php.original
 +++ ./PKRequest.inc.php.correto
-@@ -282,7 +282,7 @@
+@@ -282,7 +282,8 @@
  		$_this =& PKPRequest::_checkThis();
  
  		if (!isset($_this->_protocol)) {
