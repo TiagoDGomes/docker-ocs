@@ -1,5 +1,5 @@
---- /var/www/localhost/htdocs/ocs/lib/pkp/classes/core/PKPRequest.inc.php.original
-+++ /var/www/localhost/htdocs/ocs/lib/pkp/classes/core/PKPRequest.inc.php
+--- /var/www/localhost/htdocs/ocs/lib/pkp/classes/core/PKPRequest.inc.php
++++ PKPRequest.inc.php
 @@ -282,7 +282,7 @@
                 $_this =& PKPRequest::_checkThis();
  
