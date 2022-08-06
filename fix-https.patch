@@ -1,8 +1,8 @@
---- /var/www/localhost/htdocs/ocs/lib/pkp/classes/core/PKPRequest.inc.php
-+++ PKPRequest.inc.php
+--- ./PKRequest.inc.php.original
++++ /var/www/localhost/htdocs/ocs/lib/pkp/classes/core/PKPRequest.inc.php
 @@ -282,7 +282,7 @@
                 $_this =& PKPRequest::_checkThis();
-
+ 
                 if (!isset($_this->_protocol)) {
 -                       $_this->_protocol = (!isset($_SERVER['HTTPS']) || strtolower($_SERVER['HTTPS']) != 'on') ? 'http' : 'https';
 +                       $_this->_protocol = ( isset($_SERVER['HTTPS']) || strtolower_codesafe($_SERVER['HTTPS']) == 'on' || @$_SERVER["HTTP_X_FORWARDED_PROTO"] == 'https' ) ? 'https': 'http';
