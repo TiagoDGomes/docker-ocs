@@ -26,9 +26,9 @@ RUN mkdir -p /run/apache2 &&\
     chmod -R ugo+w /var/www/localhost/htdocs/ocs/cache &&\
     chmod +x /boot.sh 
 
-ADD fix-https.patch /tmp/
-
-RUN patch /var/www/localhost/htdocs/ocs/lib/pkp/classes/core/PKPRequest.inc.php /tmp/fix-https.patch &&\
+#ADD fix-https.patch /tmp/
+RUN wget https://raw.githubusercontent.com/TiagoDGomes/docker-ocs/main/fix-https.patch -O /tmp/fix-https.patch &&\
+    patch /var/www/localhost/htdocs/ocs/lib/pkp/classes/core/PKPRequest.inc.php < /tmp/fix-https.patch &&\
     rm /tmp/*.patch
 
 # Redirect output
