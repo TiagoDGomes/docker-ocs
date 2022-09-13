@@ -4,7 +4,7 @@ OCS Docker version
 
 https://pkp.sfu.ca/ocs/
 
-## Basic usage
+## Basic install
 
 ```
 wget https://raw.githubusercontent.com/TiagoDGomes/docker-ocs/main/Dockerfile -O Dockerfile
